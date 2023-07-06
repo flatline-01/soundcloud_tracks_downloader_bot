@@ -7,7 +7,6 @@ from sclib.asyncio import SoundcloudAPI, Track
 from telebot.types import InputFile
 
 token = os.getenv('TOKEN')
-
 bot = AsyncTeleBot(token=token)
 
 
@@ -21,8 +20,8 @@ async def download(message):
     chat_id = message.chat.id
     track_url = message.text
 
-    pattern_web = re.compile("https://soundcloud.com/[-a-zA-Z0-9@:%._+~#=]{1,256}/[-a-zA-Z0-9@:%._+~#=]{1,256}")
-    pattern_app = re.compile("https://soundcloud.app.goo.gl/[-a-zA-Z0-9@:%._+~#=]{5}")
+    pattern_web = re.compile("https://soundcloud.com/[-a-zA-Z0-9@:%._+~#=]{1,256}/[-a-zA-Z0-9@:%._+~#=]{1,256}+$")
+    pattern_app = re.compile("https://soundcloud.app.goo.gl/[-a-zA-Z0-9@:%._+~#=]{5}+$")
 
     if pattern_web.match(track_url) or pattern_app.match(track_url):
         if pattern_app.match(track_url):
